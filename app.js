@@ -10,10 +10,9 @@ app.listen(appport, () => {
 const mysql= require('mysql2');
 const datacnx=require('./databaseConnexion.json'); // ajoute tes informations de connexion dans le fichier databaseConnexion.json.
 const { host, port, user, password, database } = datacnx.database;
+const db = mysql.createConnection({ host, port, user, password, database });
 
 if (host!= "" && port!="" && user!="" && password!="" && database!=""){
-    const db = mysql.createConnection({ host, port, user, password, database });
-
     db.connect(err=>{
         if(err) {
             console.log(err,'dberr');
