@@ -2,7 +2,7 @@
 app.get('/',(req,res)=>{
     // Voici un exemple de requête intégrer au code.
     // Cette requête retourne les informations de la table paramétres.
-    let qr = `SELECT raisonSocial, president, tresorier FROM catsEye.parametres;`;
+    let qr = `SELECT p.key, p.value FROM catsEye.parametres p LIMIT 3;`;
     db.query(qr,(err,result)=>{
         if(err){
             console.log(err,'err');
