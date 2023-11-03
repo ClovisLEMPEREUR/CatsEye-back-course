@@ -16,6 +16,6 @@ db.connect(err=>{
     if(err) {
         console.log(err,'dberr');
         process.exit(err);
-    } else {console.log(`Tu est connecté à la base de données: ${database} ...`);}    
+    } else {console.log(`Tu es connecté à la base de données: ${database} ...`);}    
 });
 
