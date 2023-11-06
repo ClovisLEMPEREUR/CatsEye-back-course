@@ -27,3 +27,22 @@ if (host!= "" && port!="" && user!="" && password!="" && database!=""){
     process.exit(1);
 }
 
+// EXEMPLE de requête intégrée
+app.get('/',(req,res)=>{
+    // Voici un exemple de requête intégrer au code.
+    // Cette requête retourne les informations de la table paramétres.
+    let qr = `SELECT p.id, p.keyword, p.value FROM catsEye.parametres p;`;
+    
+    db.query(qr,(err,result)=>{
+        if(err){
+            console.log(err,'err');
+        }
+        if(result.length>0){
+            res.send({
+                message:'Liste des informations de la table parametres',
+                data:result
+            });
+        }
+    });
+});
+
