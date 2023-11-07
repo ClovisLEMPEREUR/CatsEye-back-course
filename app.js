@@ -1,12 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const appport = 3000;
+const appPort = 3000;
 
 app.use(cors());
 
-app.listen(appport, () => {
-    console.log(`Ton server nodeJS a démarré sur le http://localhost:${appport}`);
+app.listen(appPort, () => {
+    console.log(`Ton server nodeJS CatsEye a démarré sur le http://localhost:${appPort}`);
   });
 
 // *** Connection à la base de donnée ***
