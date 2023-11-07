@@ -42,6 +42,10 @@ app.get('/',(req,res)=>{
                 message:'Liste des informations de la table parametres',
                 data:result
             });
+        } else {
+            res.send({
+                message:`Il n'y a aucun paramètre à afficher`,
+            });
         }
     });
 });

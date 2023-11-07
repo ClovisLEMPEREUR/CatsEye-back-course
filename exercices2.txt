@@ -1,0 +1,74 @@
+// *** REQUETES AVEC PARAMETRES ***
+/* EXEMPLE de requête intégrée avec paramètre
+:code est le parametre qui sera envoyé à la requête. */
+app.get('/detailMateriels/:code',(req,res)=>{
+    // on récupére le paramétre dans une variable gCode.
+    let gCode=req.params.code;
+    /* La variable est inséré dans la requête.
+    Remarquez les quotes ' autour du paramétre et le slash \ pour échaper le caractère('). */
+    let qr = `SELECT m.code, m.dateCreation, m.modele, m.marque,`
+            +` m.dateAchat, m.prixAchat, m.photo, m.type`
+            +` FROM catsEye.materiels m WHERE m.code = \'${gCode}\';`;
+    db.query(qr,(err,result)=>{
+        if(err){
+            console.log(err,'err');
+        }
+        if(result.length>0){
+            res.send({
+                message:'Detail d\'un matériel',
+                data:result
+            });
+        } else {
+            res.send({
+                message:`Il n'y a aucun matériel avec un code = ${gCode} `,
+            });
+        }     
+    });
+});
+
+// *** EXERCICES 2 - PROJECTIONS AVEC PARAMETRES ***
+//3) Détail pour un adhérents, sélectionné d'aprés sont id. : id, dateCreation, nom, prenom, dateNaissance, mail, telephone, mobile, adresse, ville
+app.get('/detailAdherents/:id',(req,res)=>{
+    let gId=req.params.id;
+    // Ajoute ta requête SQL entre les quotes ` => [Alt Gr + 7]
+    let qr = `requête`; 
+
+    db.query(qr,(err,result)=>{
+        if(err){
+            console.log(err,'err');
+        }
+        if(result.length>0){
+            res.send({
+                message:'Détail d\'un adhérent',
+                data:result
+            });
+        } else {
+            res.send({
+                message:`Il n'y a aucun adhérent avec un ID = ${gId}`,
+            });
+        }
+    });
+});
+
+//4) Filtrer la liste de matériels avec un prix maximum.
+app.get('/listeMateriels/prix=:maxPrix',(req,res)=>{
+    let gMaxPrix=req.params.maxPrix;
+    // Ajoute ta requête SQL entre les quotes ` =>[Alt Gr + 7]
+    let qr = `requête`; 
+    
+    db.query(qr,(err,result)=>{
+        if(err){
+            console.log(err,'err');
+        }
+        if(result.length>0){
+            res.send({
+                message:`Matériels avec un prix inférieur à ${gMaxPrix}`,
+                data:result
+            });
+        } else {
+            res.send({
+                message:`Il n'y a aucun matériel avec un prix inférieur à ${gMaxPrix}€`,
+            });
+        }
+    });
+});

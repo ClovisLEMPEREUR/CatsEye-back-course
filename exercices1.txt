@@ -1,7 +1,7 @@
 // *** EXERCICES 1 - PROJECTIONS SIMPLE ***
 
 //1) Liste des matériels par prix croissant : code, marque, modele, prixAchat
-app.get('/listMaterielsParPrix',(req,res)=>{
+app.get('/listeMateriels',(req,res)=>{
     // Ajoute ta requête SQL entre les quotes ` =>[Alt Gr + 7]
     let qr = `requete`;
 
@@ -14,12 +14,16 @@ app.get('/listMaterielsParPrix',(req,res)=>{
                 message:'Materiels ordonnés par prix croissant',
                 data:result
             });
+        } else {
+            res.send({
+                message:`Il n'y a aucun matériel à afficher`,
+            });
         }
     });
 });
 
 //2) Liste des adhérents ordonnés par nom et prénom : id, nom, prenom, mail
-app.get('/listAdherentOrdonne',(req,res)=>{
+app.get('/listeAdherents',(req,res)=>{
     // Ajoute ta requête SQL entre les quotes ` =>[Alt Gr + 7]
     let qr = 'requere';
 
@@ -31,6 +35,10 @@ app.get('/listAdherentOrdonne',(req,res)=>{
             res.send({
                 message:'Liste des adhérents ordonnés par nom et prénom',
                 data:result
+            });
+        } else {
+            res.send({
+                message:`Il n'y a aucun adhérent à afficher`,
             });
         }
     });
@@ -49,6 +57,10 @@ app.get('/retrieveSourceImages',(req,res)=>{
             res.send({
                 message:'retourne le chemin du logo',
                 data:result
+            });
+        } else {
+            res.send({
+                message:`Il n'y a rien à afficher`,
             });
         }
     });
