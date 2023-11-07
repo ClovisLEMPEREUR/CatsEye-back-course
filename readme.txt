@@ -9,8 +9,8 @@ Organisation : Equipe de 2 étudiants
 
 --------------
 Pré requis:
-> Installation de VScode
-> Installation de nodeJS
+> Installation de VScode https://visualstudio.microsoft.com/fr/downloads/
+> Installation de nodeJS https://nodejs.org/en/download
 > Ouverture des ports du Firewall ou désactivation temporaire.
 > Découverte de la base de données CatsEye
 --------------
