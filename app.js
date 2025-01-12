@@ -9,7 +9,15 @@ app.listen(appPort, () => {
     console.log(`Ton server nodeJS CatsEye a démarré sur le http://localhost:${appPort}`);
   });
 
+
+// **************************************
 // *** Connection à la base de donnée ***
+// **************************************
+
+/*
+Configurer le fichier databaseConnexion.json 
+puis vérifiez le bon démarrage de l'API avec la commande "npm start" dans le terminal.
+*/
 const mysql= require('mysql2');
 const datacnx=require('./databaseConnexion.json'); // ajoute tes informations de connexion dans le fichier databaseConnexion.json.
 const { host, port, user, password, database } = datacnx.database;
@@ -27,26 +35,5 @@ if (host!= "" && port!="" && user!="" && password!="" && database!=""){
     process.exit(1);
 }
 
-// EXEMPLE de requête intégrée
-app.get('/',(req,res)=>{
-    // Voici un exemple de requête intégrer au code.
-    // Cette requête retourne les informations de la table paramétres.
-    let qr = `SELECT p.id, p.keyword, p.value FROM catsEye.parametres p;`;
-    
-    db.query(qr,(err,result)=>{
-        if(err){
-            console.log(err,'err');
-        }
-        if(result.length>0){
-            res.send({
-                message:'Liste des informations de la table parametres',
-                data:result
-            });
-        } else {
-            res.send({
-                message:`Il n'y a aucun paramètre à afficher`,
-            });
-        }
-    });
-});
-
+// AJOUTER LES EXEMPLES ET EXERCICES CI-APRES.
+// il est conseillé d'ajouter le code correspondant à 1 seul URL à la fois.

@@ -1,0 +1,15 @@
+// *** REQUETES AVEC JOINTURES *** 
+
+//7) remplacer la requêtes de l'exemple de l'exercices2 par la suivante:
+
+/* `SELECT m.code, DATE_FORMAT(m.dateCreation,"%d/%m/%Y %H:%i:%s") as date_Creation, m.modele, m.marque,`
++` DATE_FORMAT(m.dateAchat,"%d/%m/%Y") as date_Achat, m.prixAchat, m.photo, t.libelle as "type"`
++` FROM catsEye.materiels m`
++` JOIN catsEye.typesMateriel t ON t.id = m.type`
++` WHERE m.code = \'${gCode}\';`; */
+
+// puis analyser son impact sur le site et son fonctionnement SQL.
+
+//8) Modifier la requête 3) de l'exercice 2 pour afficher la ville correctement.
+
+//Bonus) Afficher la ville et le cp dans la même valeur.
