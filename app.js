@@ -31,7 +31,7 @@ if (host!= "" && port!="" && user!="" && password!="" && database!=""){
         } else {console.log(`Tu es connecté à la base de données: ${database} ... GOOD JOB !`);}    
     });
 }else{
-    console.log("FATAL ERROR:","T'as oublié quelque chose !? - Ton fichier de connexion n'est pas correcte. :( ");
+    console.log("FATAL ERROR:","T'as oublié quelque chose !? - Ton fichier de databaseConnexion.json n'est pas correcte. :( ");
     process.exit(1);
 }
 
