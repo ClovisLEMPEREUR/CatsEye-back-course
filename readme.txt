@@ -2,9 +2,6 @@ Titre : API REST (Back) pour le site web Cat's Eye
 Auteur : Clovis LEMPEREUR
 Contexte : Cat's Eye
 Section : STS SIO
-Plannification : BLOC 1 / Semestre 1
-Activité du référentiel : 1.3 Développement de la présence en ligne de l’organisation
-Séquence : Gérer les données de l’entreprise
 Organisation : Equipe de 2 étudiants
 
 --------------
