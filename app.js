@@ -18,10 +18,10 @@ app.listen(appPort, () => {
 Configurer le fichier databaseConnexion.json 
 puis vérifiez le bon démarrage de l'API avec la commande "npm start" dans le terminal.
 */
-const mysql= require('mysql2');
+const pg = require('pg'); // PostgreSQL version
 const datacnx=require('./databaseConnexion.json'); // ajoute tes informations de connexion dans le fichier databaseConnexion.json.
 const { host, port, user, password, database } = datacnx.database;
-const db = mysql.createConnection({ host, port, user, password, database });
+const db = new pg.Client({ host, port, user, password, database });
 
 if (host!= "" && port!="" && user!="" && password!="" && database!=""){
     db.connect(err=>{
@@ -33,7 +33,8 @@ if (host!= "" && port!="" && user!="" && password!="" && database!=""){
 }else{
     console.log("FATAL ERROR:","T'as oublié quelque chose !? - Ton fichier de databaseConnexion.json n'est pas correcte. :( ");
     process.exit(1);
-}
+}        
 
+// **************************************
 // AJOUTER LES EXEMPLES ET EXERCICES CI-APRES.
 // il est conseillé d'ajouter le code correspondant à 1 seul URL à la fois.

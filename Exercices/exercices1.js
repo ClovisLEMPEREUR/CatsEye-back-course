@@ -4,7 +4,7 @@
 // ***********************************
 // *** EXEMPLE de requête intégrée ***
 // ***********************************
-app.get('/',(req,res)=>{
+app.get('/', async (req,res)=>{
     // Voici un exemple de requête intégrer au code.
     // Cette requête retourne les informations de la table paramétres.
     // Ajoutez cet exemple à votre fichier 'app.js' et vérifiez les changements sur le site - page parametre.
@@ -17,14 +17,14 @@ app.get('/',(req,res)=>{
 
     */
     
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){
             console.log(err,'err');
         }
-        if(result.length>0){
+        if(result.rowCount >0){
             res.send({
                 message:'Liste des informations de la table parametres',
-                data:result
+                data:result.rows
             });
         } else {
             res.send({
@@ -39,7 +39,7 @@ app.get('/',(req,res)=>{
 // ****************************************
 
 // QUESTION 1) 
-app.get('/listeMateriels',(req,res)=>{
+app.get('/listeMateriels', async (req,res)=>{
 /*
 l'url suivante '/listeMateriels' doit fournir les données de la liste des matériels visible dans l'application catseye.sio.local
 Il est nécéssaire d'afficher via cette API les champs (colonnes) : code, marque, modele, prixAchat de la table materiels.
@@ -49,14 +49,14 @@ Conceil de BONNES PRATIQUES : utiliser un alias de table.
 */
     let qr = `requete`;
 
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){
             console.log(err,'err');
         }
-        if(result.length>0){
+        if(result.rowCount>0){
             res.send({
                 message:'Materiels ordonnés par prix croissant',
-                data:result
+                data:result.rows
             });
         } else {
             res.send({
@@ -67,7 +67,7 @@ Conceil de BONNES PRATIQUES : utiliser un alias de table.
 });
 
 // QUESTION 2)
-app.get('/listeAdherents',(req,res)=>{
+app.get('/listeAdherents', async (req,res)=>{
 /* 
 L'url suivante '/listeAdherents' doit fournir la liste des adhérents de l'association visible dans l'application catseye.sio.local
 Il est nécéssaire d'afficher via cette API les champs (colonnes) : id, nom, prenom, mail de la table adherents.
@@ -76,14 +76,14 @@ Le resultat sera trié par ordre croissant des noms puis des prénoms.
 */
     let qr = 'requere';
 
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){
             console.log(err,'err');
         }
-        if(result.length>0){
+        if(result.rowCount>0){
             res.send({
                 message:'Liste des adhérents ordonnés par nom et prénom',
-                data:result
+                data:result.rows
             });
         } else {
             res.send({

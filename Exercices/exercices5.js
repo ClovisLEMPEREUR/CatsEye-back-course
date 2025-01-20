@@ -2,7 +2,7 @@
 // *** EXEMPLE de requête d'ajout ***
 // **********************************
 
-app.post('/createMateriel',(req,res)=>{
+app.post('/createMateriel', async (req,res)=>{
     let code = req.body.code;
     let modele = req.body.modele;
     let marque = req.body.marque;
@@ -26,9 +26,8 @@ app.post('/createMateriel',(req,res)=>{
     Cet identifiant est retourné par la liste déroulante dans l'application catseye.sio.local.
     */
 
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){console.log(err);}
-        console.log(result,'result');
         if (result.affectedRows>0){
             res.send({
                 message:'data inserted',
@@ -47,7 +46,7 @@ app.post('/createMateriel',(req,res)=>{
 // *************************************
 
 // QUESTION 9) 
-app.post('/createAdherent',(req,res)=>{
+app.post('/createAdherent', async (req,res)=>{
     let nom = req.body.nom;
     let prenom = req.body.prenom;
     let dateNaissance = req.body.dateNaissance;
@@ -63,9 +62,8 @@ app.post('/createAdherent',(req,res)=>{
     */
     let qr=`requête`;
 
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){console.log(err);}
-        console.log(result,'result');
         if (result.affectedRows>0){
             res.send({
                 message:'data inserted',

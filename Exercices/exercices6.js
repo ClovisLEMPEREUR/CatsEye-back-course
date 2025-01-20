@@ -2,7 +2,7 @@
 // *** EXEMPLE de requête de suppression de données ***
 // ****************************************************
 
-app.delete('/detailMateriel/:code',(req,res)=>{
+app.delete('/detailMateriel/:code', async (req,res)=>{
     let gCode=req.params.code;
     /*
 EXEMPLE de requête de suppression d'un matériel
@@ -19,13 +19,11 @@ EXEMPLE de requête de suppression d'un matériel
     l'enregistrement à supprimer.
     */
     
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){console.log(err);}
-        // console.log(result,'result');
         if(result.affectedRows>0){
             res.send({
                 message: `data with code ${gCode} was deleted`,
-                // affectedrows:result.affectedRows
             });
         }else{
             res.send({
@@ -41,19 +39,17 @@ EXEMPLE de requête de suppression d'un matériel
 
 // QUESTION 9) 
 //: écrire la requête de suppression d'un adhérent.
-app.delete('/detailAdherents/:id',(req,res)=>{
+app.delete('/detailAdherents/:id', async (req,res)=>{
     let gId=req.params.id;
 
     // Ajoute ta requête SQL entre les quotes ` => [Alt Gr + 7]
     let qr=`requête`;
     
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){console.log(err);}
-        // console.log(result,'result');
         if(result.affectedRows>0){
             res.send({
                 message: `data with code ${gId} was deleted`,
-                // affectedrows:result.affectedRows
             });
         }else{
             res.send({
@@ -69,7 +65,7 @@ app.delete('/detailAdherents/:id',(req,res)=>{
 // *****************************************************
 
 // Exemple de requête de mise à jout d'un matériel
-app.put('/detailMateriel/:code',(req,res)=>{
+app.put('/detailMateriel/:code', async (req,res)=>{
     //console.log(req.body,'updatetdata');
 
     let gCode = req.params.code;
@@ -88,9 +84,8 @@ app.put('/detailMateriel/:code',(req,res)=>{
                 type='${type}'
             where code='${gCode}'`;
 
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){console.log(err);}
-        //console.log(result,'result');
         if (result.affectedRows>0){
             res.send({
                 message: `data ${gCode} was updated`,
@@ -110,7 +105,7 @@ app.put('/detailMateriel/:code',(req,res)=>{
 
 // QUESTION 11)
 //écrire la requête de mise à jour d'un adhérent
-app.put('/createAdherent/:id',(req,res)=>{
+app.put('/createAdherent/:id', async (req,res)=>{
     //console.log(req.body,'updatetdata');
 
     let gId = req.params.id;
@@ -127,9 +122,8 @@ app.put('/createAdherent/:id',(req,res)=>{
     // Ajoute ta requête SQL entre les quotes ` => [Alt Gr + 7]
     let qr=`requête`;
 
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){console.log(err);}
-        //console.log(result,'result');
         if (result.affectedRows>0){
             res.send({
                 message: `data ${gId} was updated`,

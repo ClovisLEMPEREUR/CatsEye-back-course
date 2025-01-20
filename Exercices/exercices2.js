@@ -3,7 +3,7 @@
 // **************************************************
 
 // L'url ci-dessous permet de fournir les données du détail d'un matériel choisi dans l'application catseye.sio.local
-app.get('/detailMateriel/:code',(req,res)=>{
+app.get('/detailMateriel/:code', async(req,res)=>{
     /* :code est le parametre qui sera envoyé à la requête.
     on récupére ce paramétre dans une variable gCode. */
     let gCode=req.params.code;
@@ -28,14 +28,14 @@ app.get('/detailMateriel/:code',(req,res)=>{
     */
 
 
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){
             console.log(err,'err');
         }
-        if(result.length>0){
+        if(result.rowCount>0){
             res.send({
                 message:'Detail d\'un matériel',
-                data:result
+                data:result.rows
             });
         } else {
             res.send({
@@ -50,7 +50,7 @@ app.get('/detailMateriel/:code',(req,res)=>{
 // *************************************************
 
 // QUESTION 3) 
-app.get('/detailAdherents/:id',(req,res)=>{
+app.get('/detailAdherents/:id', async (req,res)=>{
     let gId=req.params.id;
 /*
 L'url ci-dessus permet de fournir les données du détail d'un adhérent choisi dans l'application catseye.sio.local 
@@ -59,14 +59,14 @@ Il est nécessaire d'afficher les champs (colonnes) : id, dateCreation renommage
 */
     let qr = `requête`; 
 
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){
             console.log(err,'err');
         }
-        if(result.length>0){
+        if(result.rowCount>0){
             res.send({
                 message:'Détail d\'un adhérent',
-                data:result
+                data:result.rows
             });
         } else {
             res.send({
@@ -77,7 +77,7 @@ Il est nécessaire d'afficher les champs (colonnes) : id, dateCreation renommage
 });
 
 // QUESTION 4)
-app.get('/listeMateriels/prix=:maxPrix',(req,res)=>{
+app.get('/listeMateriels/prix=:maxPrix', async (req,res)=>{
     let gMaxPrix=req.params.maxPrix;
 /* 
 L'url ci-dessus permet de fournir les données de la liste des matériels filtrés par la valeur prix maximum fourni dans le formulaire de l'application cateye.sio.local
@@ -86,14 +86,14 @@ Reprenez la requête de la question 1 et modifiez là pour permettre un filtrage
 */
     let qr = `requête`; 
     
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){
             console.log(err,'err');
         }
-        if(result.length>0){
+        if(result.rowCount>0){
             res.send({
                 message:`Matériels avec un prix inférieur à ${gMaxPrix}`,
-                data:result
+                data:result.rows
             });
         } else {
             res.send({
@@ -104,21 +104,21 @@ Reprenez la requête de la question 1 et modifiez là pour permettre un filtrage
 });
 
 // QUESTION Bonus) 
-app.get('/retrieveSourceImages',(req,res)=>{
+app.get('/retrieveSourceImages', async (req,res)=>{
 /*
 L'url ci-dessus permet de retourner les données de la table parametre : chemin et logo
 => Ecrivez la requête et insérez là dans le code ci-dessous entre les quotes ` =>[Alt Gr + 7].
 */
     let qr = `requete`; 
     
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){
             console.log(err,'err');
         }
-        if(result.length>0){
+        if(result.rowCount>0){
             res.send({
                 message:'retourne le chemin du logo',
-                data:result
+                data:result.rows
             });
         } else {
             res.send({

@@ -1,29 +1,32 @@
 // *** PRE-REQUIS ***
 
-/* Dans la fonction : app.get('/detailMateriel/:code'
+/*
+Dans la fonction : app.get('/detailMateriel/:code'
 Ajouter dans le select les champs : t.id 
 */
 
 
-/* Dans la fonction : app.get('/detailAdherent/:id'
+/*
+Dans la fonction : app.get('/detailAdherent/:id'
 Ajouter dans le select les champs : v.id as idville, v.cp 
 */
 
 
-/*Ajouter simplement cette partie à votre fichier app.js*/
-/* Pré-requis permet de gérer la liste déroulante de la liste des types de materiel.
+/*
+Ajouter simplement cette partie à votre fichier app.js
+Pré-requis permet de gérer la liste déroulante de la liste des types de materiel.
 */
-app.get('/listeTypeMateriels',(req,res)=>{
+app.get('/listeTypeMateriels', async (req,res)=>{
     let qr = `SELECT tm.id, tm.libelle FROM catsEye.typesMateriel tm;`; 
     
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){
             console.log(err,'err');
         }
-        if(result.length>0){
+        if(result.rowCount>0){
             res.send({
                 message:`Liste des types de matériel`,
-                data:result
+                data:result.rows
             });
         } else {
             res.send({
@@ -33,22 +36,24 @@ app.get('/listeTypeMateriels',(req,res)=>{
     });
 });
 
-/*Ajouter simplement cette partie à votre fichier app.js*/
-/* Pré-requis permet de gérer la liste déroulante de la liste des villes.*/
-app.get('/listeVilles/:cp',(req,res)=>{
+/*
+Ajouter simplement cette partie à votre fichier app.js
+Pré-requis permet de gérer la liste déroulante de la liste des villes.
+*/
+app.get('/listeVilles/:cp', async (req,res)=>{
     let gCP=req.params.cp;
     let qr = `SELECT v.id, concat(v.cp," - ", v.nom) as ville 
             FROM catsEye.villes v
             WHERE v.cp LIKE "${gCP}%";`; 
     
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){
             console.log(err,'err');
         }
-        if(result.length>0){
+        if(result.rowsCount>0){
             res.send({
                 message:`Liste des villes`,
-                data:result
+                data:result.rows
             });
         } else {
             res.send({

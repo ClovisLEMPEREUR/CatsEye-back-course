@@ -3,7 +3,7 @@
 // ****************************************************
 
 // L'url ci-dessous permet de fournir les données de la liste des adhérents ordonnés par leur age.
-app.get('/listAdherentsParAge',(req,res)=>{
+app.get('/listAdherentsParAge', async (req,res)=>{
 /*
 On utilise les fonction YEAR() et NOW() pour déterminer l'age d'un adhérent.
 Remarque on utilise la date de naissance pour l'ordonnancement ce qui permet d'être exact.
@@ -22,14 +22,14 @@ Remarque on utilise la date de naissance pour l'ordonnancement ce qui permet d'�
     - On renomme ('AS') toujours un calcul ou un champ utilisant une fonction.
     */
 
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){
             console.log(err,'err');
         }
-        if(result.length>0){
+        if(result.rowCount>0){
             res.send({
                 message:'Liste des adhérents ordonnés par age décroissant',
-                data:result
+                data:result.rows
             });
         } else {
             res.send({
@@ -44,7 +44,7 @@ Remarque on utilise la date de naissance pour l'ordonnancement ce qui permet d'�
 // ***********************************************************
 
 //QUESTION 5) Filtrer la liste de matériels par un prix avec l'opérateur supérieur.
-app.get('/listeMateriels/ageEntre=:minAge-:maxAge',(req,res)=>{
+app.get('/listeMateriels/ageEntre=:minAge-:maxAge', async(req,res)=>{
     let gMinAge=req.params.minAge;
     let gMaxAge=req.params.maxAge;
 /* 
@@ -54,14 +54,14 @@ Reprenez la requête de la question 2 et modifiez là pour permettre un filtrage
 */
     let qr = `requête`; 
 
-    db.query(qr,(err,result)=>{
+    await db.query(qr,(err,result)=>{
         if(err){
             console.log(err,'err');
         }
-        if(result.length>0){
+        if(result.rowCount>0){
             res.send({
                 message:`Liste des matériels achetés entre ${gMinAge} et ${gMaxAge} ans`,
-                data:result
+                data:result.rows
             });
         } else {
             res.send({
