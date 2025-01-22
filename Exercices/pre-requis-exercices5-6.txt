@@ -44,9 +44,9 @@ app.get('/listeVilles/:cp', async (req,res)=>{
     let gCP=req.params.cp;
     let qr = `SELECT v.id, concat(v.cp," - ", v.nom) as ville 
             FROM catsEye.villes v
-            WHERE v.cp LIKE "${gCP}%";`; 
+            WHERE v.cp LIKE "$1%";`; 
     
-    await db.query(qr,(err,result)=>{
+    await db.query(qr,[gCP],(err,result)=>{
         if(err){
             console.log(err,'err');
         }

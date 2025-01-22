@@ -1,9 +1,9 @@
 {
     "database": {
-        "host":"",
-        "port": "",
-        "user":"",
-        "password":"",
-        "database":""
+        "host":"127.0.0.1",
+        "port": "5432",
+        "user":"catuser",
+        "password":"catuser",
+        "database":"postgres"
     }
 }

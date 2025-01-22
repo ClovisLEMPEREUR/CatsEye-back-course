@@ -15,7 +15,7 @@ app.get('/detailMateriel/:code', async(req,res)=>{
                 m.dateAchat AS date_Achat, 
                 m.prixAchat, m.photo, m.type
             FROM catsEye.materiels m 
-            WHERE m.code = '${gCode}';`;
+            WHERE m.code = $1;`;
 
     /* 
     Référence : https://sql.sh/cours/where
@@ -28,7 +28,7 @@ app.get('/detailMateriel/:code', async(req,res)=>{
     */
 
 
-    await db.query(qr,(err,result)=>{
+    await db.query(qr,[gCode], (err,result)=>{
         if(err){
             console.log(err,'err');
         }
@@ -59,7 +59,7 @@ Il est nécessaire d'afficher les champs (colonnes) : id, dateCreation renommage
 */
     let qr = `requête`; 
 
-    await db.query(qr,(err,result)=>{
+    await db.query(qr, [gId], (err,result)=>{
         if(err){
             console.log(err,'err');
         }
@@ -86,7 +86,7 @@ Reprenez la requête de la question 1 et modifiez là pour permettre un filtrage
 */
     let qr = `requête`; 
     
-    await db.query(qr,(err,result)=>{
+    await db.query(qr,[gMaxPrix], (err,result)=>{
         if(err){
             console.log(err,'err');
         }

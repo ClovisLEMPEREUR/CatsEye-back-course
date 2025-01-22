@@ -7,7 +7,7 @@
 DATE_FORMAT(m.dateAchat,"%d/%m/%Y") as date_Achat, m.prixAchat, m.photo, t.libelle as "type"
 FROM catsEye.materiels m
 JOIN catsEye.typesMateriel t ON t.id = m.type
-WHERE m.code = \'${gCode}\';`; 
+WHERE m.code = s1;`; 
 */
 
 // puis analyser son impact sur le site et son fonctionnement SQL.

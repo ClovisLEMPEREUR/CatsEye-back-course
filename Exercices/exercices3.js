@@ -54,7 +54,7 @@ Reprenez la requête de la question 2 et modifiez là pour permettre un filtrage
 */
     let qr = `requête`; 
 
-    await db.query(qr,(err,result)=>{
+    await db.query(qr, [gMinAge, gMaxAge], (err,result)=>{
         if(err){
             console.log(err,'err');
         }

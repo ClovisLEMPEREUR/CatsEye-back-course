@@ -16,8 +16,7 @@ app.post('/createMateriel', async (req,res)=>{
     */
     let qr=`INSERT INTO catsEye.materiels 
                 (code,modele,marque,dateAchat,prixAchat,type) 
-            VALUES 
-                ('${code}','${modele}','${marque}','${dateAchat}','${prixAchat}',${type});`;
+            VALUES ($1,$2,$3,$4,$5,$6);`;
 
     /*
     Référence : https://sql.sh/cours/insert-into
@@ -26,7 +25,7 @@ app.post('/createMateriel', async (req,res)=>{
     Cet identifiant est retourné par la liste déroulante dans l'application catseye.sio.local.
     */
 
-    await db.query(qr,(err,result)=>{
+    await db.query(qr, [code,modele,marque,dateAchat,prixAchat,type],(err,result)=>{
         if(err){console.log(err);}
         if (result.affectedRows>0){
             res.send({
@@ -62,7 +61,7 @@ app.post('/createAdherent', async (req,res)=>{
     */
     let qr=`requête`;
 
-    await db.query(qr,(err,result)=>{
+    await db.query(qr,[nom,prenom,dateNaissance,email,telephone,mobile,adresse,ville],(err,result)=>{
         if(err){console.log(err);}
         if (result.affectedRows>0){
             res.send({

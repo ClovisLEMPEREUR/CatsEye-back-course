@@ -8,7 +8,7 @@ app.delete('/detailMateriel/:code', async (req,res)=>{
 EXEMPLE de requête de suppression d'un matériel
     */
     let qr=`delete from materiels \
-        where code='${gCode}'`;
+        where code=$1`;
 
     /*
     Référence : https://sql.sh/cours/delete
@@ -19,7 +19,7 @@ EXEMPLE de requête de suppression d'un matériel
     l'enregistrement à supprimer.
     */
     
-    await db.query(qr,(err,result)=>{
+    await db.query(qr,[gCode],(err,result)=>{
         if(err){console.log(err);}
         if(result.affectedRows>0){
             res.send({
@@ -45,7 +45,7 @@ app.delete('/detailAdherents/:id', async (req,res)=>{
     // Ajoute ta requête SQL entre les quotes ` => [Alt Gr + 7]
     let qr=`requête`;
     
-    await db.query(qr,(err,result)=>{
+    await db.query(qr,[gId], (err,result)=>{
         if(err){console.log(err);}
         if(result.affectedRows>0){
             res.send({
@@ -77,14 +77,14 @@ app.put('/detailMateriel/:code', async (req,res)=>{
     let type = req.body.type;
 
     let qr=`update materiels set 
-                modele='${modele}',
-                marque='${marque}',
-                dateAchat='${dateAchat}',
-                prixAchat='${prixAchat}',
-                type='${type}'
-            where code='${gCode}'`;
+                modele= $2,
+                marque= $3,
+                dateAchat= $4,
+                prixAchat= $5,
+                type= $6
+            where code= $1`;
 
-    await db.query(qr,(err,result)=>{
+    await db.query(qr,[gCode,modele,marque,dateAchat,prixAchat,type], (err,result)=>{
         if(err){console.log(err);}
         if (result.affectedRows>0){
             res.send({
@@ -122,7 +122,7 @@ app.put('/createAdherent/:id', async (req,res)=>{
     // Ajoute ta requête SQL entre les quotes ` => [Alt Gr + 7]
     let qr=`requête`;
 
-    await db.query(qr,(err,result)=>{
+    await db.query(qr,[gId,nom,prenom,dateNaissance,email,telephone,mobile,adresse,ville],(err,result)=>{
         if(err){console.log(err);}
         if (result.affectedRows>0){
             res.send({
