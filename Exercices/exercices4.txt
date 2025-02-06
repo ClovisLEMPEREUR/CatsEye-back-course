@@ -5,8 +5,8 @@
 /* 
 `SELECT m.code, DATE_FORMAT(m.dateCreation,"%d/%m/%Y %H:%i:%s") as date_Creation, m.modele, m.marque,
 DATE_FORMAT(m.dateAchat,"%d/%m/%Y") as date_Achat, m.prixAchat, m.photo, t.libelle as "type"
-FROM catsEye.materiels m
-JOIN catsEye.typesMateriel t ON t.id = m.type
+FROM catseye.materiels m
+JOIN catseye.typesMateriel t ON t.id = m.type
 WHERE m.code = s1;`; 
 */
 

@@ -9,7 +9,7 @@ app.get('/', async (req,res)=>{
     // Cette requête retourne les informations de la table paramétres.
     // Ajoutez cet exemple à votre fichier 'app.js' et vérifiez les changements sur le site - page parametre.
     let qr = `SELECT p.id, p.keyword, p.value 
-            FROM catsEye.parametres p;`;
+            FROM catseye.parametres p;`;
 
     /*
     Référence : https://sql.sh/cours/select
@@ -41,7 +41,7 @@ app.get('/', async (req,res)=>{
 // QUESTION 1) 
 app.get('/listeMateriels', async (req,res)=>{
 /*
-l'url suivante '/listeMateriels' doit fournir les données de la liste des matériels visible dans l'application catseye.sio.local
+l'url suivante '/listeMateriels' doit fournir les données de la liste des matériels visibles dans l'application catseye.sio.local
 Il est nécéssaire d'afficher via cette API les champs (colonnes) : code, marque, modele, prixAchat de la table materiels.
 Le resultat sera trié par ordre croissant dex prix.
 Conceil de BONNES PRATIQUES : utiliser un alias de table.

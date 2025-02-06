@@ -10,7 +10,7 @@ Remarque on utilise la date de naissance pour l'ordonnancement ce qui permet d'�
 */
     let qr = `SELECT id, nom, prenom, 
                 year(now())- year(dateNaissance) as age
-            FROM catsEye.adherents
+            FROM catseye.adherents
             ORDER BY dateNaissance DESC;`;
 
     /*
@@ -48,7 +48,8 @@ app.get('/listeMateriels/ageEntre=:minAge-:maxAge', async(req,res)=>{
     let gMinAge=req.params.minAge;
     let gMaxAge=req.params.maxAge;
 /* 
-L'url ci-dessus permet de fournir les données de la liste des adhérents filtrés par les valeurs minAge et maxAge fourni dans le formulaire de l'application cateye.sio.local
+L'url ci-dessus permet de fournir les données de la liste des matériels filtrés par les valeurs minAge et maxAge fourni dans le formulaire de l'application cateye.sio.local
+L'age du matériel est calculé en fonction de la date d'achat.
 Reprenez la requête de la question 2 et modifiez là pour permettre un filtrage sur une tranche d'age.
 => Ecrivez la requête et insérez là dans le code ci-dessous entre les quotes ` =>[Alt Gr + 7].
 */

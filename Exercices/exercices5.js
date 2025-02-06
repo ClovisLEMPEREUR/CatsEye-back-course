@@ -14,7 +14,7 @@ app.post('/createMateriel', async (req,res)=>{
     L'url ci-dessous et les variables permetent de réaliser une requête HTTP POST afin d'ajouter un nouvel enregistrement dans la table materiels
     Ci-dessous la requête d'ajout de données dans la table materiels pour les champs (code,modele,marque,dateAchat,prixAchat,type)
     */
-    let qr=`INSERT INTO catsEye.materiels 
+    let qr=`INSERT INTO catseye.materiels 
                 (code,modele,marque,dateAchat,prixAchat,type) 
             VALUES ($1,$2,$3,$4,$5,$6);`;
 

@@ -14,7 +14,7 @@ app.get('/detailMateriel/:code', async(req,res)=>{
                 m.modele, m.marque,
                 m.dateAchat AS date_Achat, 
                 m.prixAchat, m.photo, m.type
-            FROM catsEye.materiels m 
+            FROM catseye.materiels m 
             WHERE m.code = $1;`;
 
     /* 
